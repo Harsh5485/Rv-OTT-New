@@ -7,12 +7,13 @@ ca = certifi.where()
 
 class manage_db():
     def __init__(self):
-        # DNS error fix karne ke liye srvMaxHosts aur connectTimeout add kiya hai
+        # connect=False aur srvMaxHosts=0 DNS error ko bypass karte hain
         self.db = motor.motor_asyncio.AsyncIOMotorClient(
             Config.DB_URL, 
             tlsCAFile=ca,
             serverSelectionTimeoutMS=5000,
             connectTimeoutMS=30000,
+            connect=False,
             srvMaxHosts=0
         )["RVDl"]
         self.user = self.db.users
