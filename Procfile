@@ -1,4 +1,4 @@
-echo "web: python bot.py" > Procfile
-git add Procfile
-git commit -m "Fix run command"
+echo "worker: python bot.py" > Procfile
+git add .
+git commit -m "Switch to Docker build and Worker mode"
 git push origin main
