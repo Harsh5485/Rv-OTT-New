@@ -17,7 +17,7 @@ class Config(object):
     #Proxy url leave blank if dont have, eg "http://13.42.34.52:52380"
     PROXY = os.environ.get("PROXY", "")
     #mongodb url get it from mongodb.com
-    DB_URL = os.environ.get("DB_URL", "")
+    DB_URL = os.environ.get("DB_URL", "mongodb+srv://Harsh54:Harsh54@cluster0.riudq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     #owner id
     OWNER_ID = [int(i) for i in  os.environ.get("OWNER_ID", "").split(" ")]
     #log channel, where to send logs
