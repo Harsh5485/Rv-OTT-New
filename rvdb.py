@@ -50,4 +50,9 @@ class manage_db():
     async def can_download(self, user_id):
         return True
 
+    # --- YE FUNCTION ADD KIYA HAI ERROR FIX KARNE KE LIYE ---
+    async def increment_download_count(self, user_id):
+        await self.user.update_one({"_id": user_id}, {"$inc": {"balance": -1}})
+        return True
+
 mydb = manage_db()
