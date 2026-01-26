@@ -10,26 +10,20 @@ class manage_db():
         self.db = motor.motor_asyncio.AsyncIOMotorClient(Config.DB_URL, tlsCAFile=ca)["RVDl"]
         self.user = self.db.users
         self.col = self.db.members
-        
 
     async def is_exist(self, user_id):
         userkey = await self.col.find_one({'_id': user_id})
-        if userkey:
-            return True
-        else:
-            return False
+        return True if userkey else False
 
     async def add_user(self, user_id):
         if not (await self.is_exist(user_id)):
             await self.col.insert_one({'_id': user_id})
     
     async def get_all_users(self):
-        all_users = self.col.find({})
-        return all_users
+        return self.col.find({})
   
     async def total_users_count(self):
-        count = await self.col.count_documents({})
-        return count
+        return await self.col.count_documents({})
 
     async def set_user(self, user_id, expiry=0, balance=0):
         start_date = datetime.now()
@@ -37,31 +31,23 @@ class manage_db():
             await self.user.insert_one({"_id": user_id, "expiry": expiry, "balance": balance, "start": start_date, "ul_mode": "gdrive"})
         except:
             userkey = await self.user.find_one({'_id': user_id})
-            await self.user.update_one({"_id": user_id},
-                                      {'$set':
-                                             {'expiry': userkey["expiry"] + expiry,
-                                              'balance': userkey["balance"] + balance}})
+            await self.user.update_one({"_id": user_id}, {'$set': {'expiry': userkey["expiry"] + expiry, 'balance': userkey["balance"] + balance}})
     
     async def get_user(self, user_id):
         userkey = await self.user.find_one({'_id': user_id})
-        if userkey:
-            return userkey
-        else:
-            return False
+        return userkey if userkey else False
     
     async def set_ul_mode(self, user_id, ul_mode):
         await self.user.update_one({"_id": user_id}, {'$set': {'ul_mode': ul_mode}})
     
     async def get_ul_mode(self, user_id):
         userkey = await self.user.find_one({'_id': user_id})
-        if userkey:
-            return userkey["ul_mode"]
-        else:
-            return "gdrive"
-
- async def delete_user(self, user_id):
+        return userkey["ul_mode"] if userkey else "gdrive"
+    
+    async def delete_user(self, user_id):
         await self.user.delete_one({"_id": user_id})
 
+    async def can_download(self, user_id):
+        return True
 
 mydb = manage_db()
-
