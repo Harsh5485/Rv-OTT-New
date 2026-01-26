@@ -26,3 +26,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 CMD ["bash", "start.sh"]
+
+WORKDIR /usr/src/app
+CMD ["python3", "bot.py"]
