@@ -3,16 +3,7 @@ services:
   - name: main-service
     type: worker
     instance_type: nano
-    env:
-      - key: API_ID
-        value: ${API_ID}
-      - key: API_HASH
-        value: ${API_HASH}
-      - key: BOT_TOKEN
-        value: ${BOT_TOKEN}
-      - key: MONGO_URI
-        value: ${MONGO_URI}
-      - key: DATABASE_NAME
-        value: rvott_db
+    build:
+      dockerfile: Dockerfile
     regions:
       - fra
