@@ -26,4 +26,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Purani lines 27-31 delete karke ye likhein
 WORKDIR /usr/src/app
 COPY . .
-CMD ["python3", "bot.py"]]
+CMD python3 bot.py
