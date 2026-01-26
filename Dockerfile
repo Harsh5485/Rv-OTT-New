@@ -23,9 +23,7 @@ COPY requirements.txt .
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade Pillow
 RUN pip3 install --no-cache-dir -r requirements.txt
-
-COPY . .
-CMD ["bash", "start.sh"]
-
+# Purani lines 27-31 delete karke ye likhein
 WORKDIR /usr/src/app
-CMD ["python3", "bot.py"]
+COPY . .
+CMD ["python3", "bot.py"]]
