@@ -7,7 +7,14 @@ ca = certifi.where()
 
 class manage_db():
     def __init__(self):
-        self.db = motor.motor_asyncio.AsyncIOMotorClient(Config.DB_URL, tlsCAFile=ca)["RVDl"]
+        # DNS error fix karne ke liye srvMaxHosts aur connectTimeout add kiya hai
+        self.db = motor.motor_asyncio.AsyncIOMotorClient(
+            Config.DB_URL, 
+            tlsCAFile=ca,
+            serverSelectionTimeoutMS=5000,
+            connectTimeoutMS=30000,
+            srvMaxHosts=0
+        )["RVDl"]
         self.user = self.db.users
         self.col = self.db.members
 
@@ -50,7 +57,6 @@ class manage_db():
     async def can_download(self, user_id):
         return True
 
-    # --- YE FUNCTION ADD KIYA HAI ERROR FIX KARNE KE LIYE ---
     async def increment_download_count(self, user_id):
         await self.user.update_one({"_id": user_id}, {"$inc": {"balance": -1}})
         return True
