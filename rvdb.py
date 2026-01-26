@@ -58,10 +58,10 @@ class manage_db():
             return userkey["ul_mode"]
         else:
             return "gdrive"
-async def delete_user(self, user_id):
+
+ async def delete_user(self, user_id):
         await self.user.delete_one({"_id": user_id})
 
-    async def can_download(self, user_id):
-        return True
 
 mydb = manage_db()
+
