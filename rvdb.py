@@ -61,9 +61,7 @@ class manage_db():
 async def delete_user(self, user_id):
         await self.user.delete_one({"_id": user_id})
 
-    # Is line ke peeche theek 4 spaces rakhein
     async def can_download(self, user_id):
         return True
 
-# Ye line bilkul left mein honi chahiye (Zero space)
 mydb = manage_db()
