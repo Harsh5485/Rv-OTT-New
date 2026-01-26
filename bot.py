@@ -3,7 +3,7 @@ import logging
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from config import Config
-from rvdb import Database
+from rvdb import manage_db as Database
 import asyncio
 from flask import Flask
 import threading
