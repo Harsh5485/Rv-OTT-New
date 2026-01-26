@@ -8,8 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Kolkata
 
 RUN apt-get -y update
-RUN apt-get install -y python3 python3-pip software-properties-common mediainfo wget \
-    git mkvtoolnix pv jq libmagic-dev unzip aria2 ffmpeg cmake
+RUN apt-get install -y mediainfo wget git mkvtoolnix pv jq libmagic-dev unzip aria2 ffmpeg cmake
 
 RUN git clone https://github.com/axiomatic-systems/Bento4.git
 WORKDIR /usr/src/app/Bento4/cmakebuild
