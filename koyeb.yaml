@@ -14,11 +14,5 @@ services:
         value: ${MONGO_URI}
       - key: DATABASE_NAME
         value: rvott_db
-    ports:
-      - port: 80
-        protocol: http
-    routes:
-      - path: /
-        port: 80
     regions:
       - fra
