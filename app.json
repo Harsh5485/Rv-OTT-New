@@ -1,0 +1,52 @@
+{
+  "name": "RV-OTT-Bot",
+  "description": "Telegram bot for downloading DRM protected content with Widevine CDM support",
+  "repository": "https://github.com/yourusername/rv-ott-bot",
+  "logo": "https://example.com/logo.png",
+  "keywords": [
+    "telegram",
+    "bot",
+    "drm",
+    "widevine",
+    "download"
+  ],
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Telegram API Hash",
+      "value": ""
+    },
+    "BOT_TOKEN": {
+      "description": "Telegram Bot Token",
+      "value": ""
+    },
+    "SESSION_STRING": {
+      "description": "Pyrogram Session String",
+      "value": "",
+      "required": false
+    },
+    "OWNER_ID": {
+      "description": "Telegram User ID of Bot Owner",
+      "value": ""
+    },
+    "DB_URL": {
+      "description": "MongoDB Connection URL",
+      "value": "mongodb://localhost:27017/rvottbot"
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    {
+      "plan": "mongolab:sandbox",
+      "as": "DATABASE"
+    }
+  ]
+}
