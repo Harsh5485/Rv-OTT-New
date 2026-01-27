@@ -27,3 +27,5 @@ expiringdict
 tenacity
 unidecode
 pyopenssl
+pyrogram
+tgcrypto
