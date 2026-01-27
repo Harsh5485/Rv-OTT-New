@@ -26,6 +26,8 @@ from time import time
 import random
 from urllib.parse import quote
 from datetime import datetime
+async def is_subscribed(user_id: int) -> bool:
+    return True
 
 # the logging things
 logging.basicConfig(
