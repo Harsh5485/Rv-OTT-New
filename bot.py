@@ -28,6 +28,18 @@ from urllib.parse import quote
 from datetime import datetime
 from aiohttp import web
 import asyncio
+async def help_koyeb(request):
+    return web.Response(text="Bot is running!")
+
+async def start_web_server():
+    app = web.Application()
+    app.router.add_get("/", help_koyeb)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    # Aapke screenshot mein port 8000 hai, toh wahi use karenge
+    site = web.TCPSite(runner, "0.0.0.0", 8000)
+    await site.start()
+    print("---------- Dummy Web Server Started on Port 8000 ----------")
 async def is_subscribed(user_id: int) -> bool:
     return True
 
@@ -749,6 +761,19 @@ async def StartBot():
     print("----------Bot Stopped----------")
     print("--------------BYE!-------------")
 
+    async def StartBot():
+    # Pehle web server start karein taaki Koyeb ko response mil jaye
+    try:
+        await start_web_server()
+    except Exception as e:
+        print(f"Web Server Error: {e}")
+
+    # Ab apna Pyrogram bot start karein
+    await TGBot.start()
+    print("---------- Bot Started Successfully ----------")
+    
+    # Ye line zaroori hai taaki bot chalta rahe aur band na ho
+    await asyncio.Event().wait()
 
 if __name__ == "__main__":
     asyncio.get_event_loop().run_until_complete(StartBot())
