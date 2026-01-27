@@ -1,9 +1,0 @@
-name: rv-ott-bot
-services:
-  - name: main-service
-    type: worker
-    instance_type: nano
-    build:
-      dockerfile: Dockerfile
-    regions:
-      - fra
