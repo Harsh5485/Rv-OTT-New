@@ -1,0 +1,33 @@
+services:
+  - name: rv-bot
+    type: web
+    env: docker
+    dockerfile: Dockerfile
+    run_command: ["python", "bot.py"]
+    ports:
+      - port: 8000
+        protocol: http
+    env_vars:
+      - name: PORT
+        value: "8000"
+      - name: BOT_TOKEN
+        secret: "{{ secrets.BOT_TOKEN }}"
+      - name: API_ID
+        secret: "{{ secrets.API_ID }}"
+      - name: API_HASH
+        secret: "{{ secrets.API_HASH }}"
+      - name: OWNER_ID
+        secret: "{{ secrets.OWNER_ID }}"
+      - name: DB_URL
+        secret: "{{ secrets.DB_URL }}"
+      - name: LOG_CHANNEL
+        secret: "{{ secrets.LOG_CHANNEL }}"
+      - name: GDRIVE_FOLDER_ID
+        secret: "{{ secrets.GDRIVE_FOLDER_ID }}"
+      - name: INDEX_LINK
+        secret: "{{ secrets.INDEX_LINK }}"
+    resources:
+      flavor: free
+    scalings:
+      min: 1
+      max: 1
